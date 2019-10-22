@@ -112,7 +112,6 @@ class RedisStore implements StoreInterface
             }
 
             $response->headers->set('X-Content-Digest', $digest);
-            $response->headers->set('Etag', $digest);
 
         }
 
