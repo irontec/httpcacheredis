@@ -36,7 +36,6 @@ class RedisStore implements StoreInterface
         $this->_timeOut = $timeOut;
         $this->_digestKeyPrefix= $digestKeyPrefix;
         $this->_metadataKeyPrefix = $metadataKeyPrefix;
-
     }
 
     /**
@@ -48,9 +47,7 @@ class RedisStore implements StoreInterface
      */
     public function lookup(Request $request)
     {
-
         $key = $this->getMetadataKey($request);
-
         $entries = $this->getMetadata($key);
         if (empty($entries)) {
             return null;
@@ -102,7 +99,6 @@ class RedisStore implements StoreInterface
     {
 
         $metadataKey = $this->getMetadataKey($request);
-
         // write the response body to the entity store if this is the original response
         if ($response->headers->has('X-Content-Digest') === false) {
 
@@ -112,7 +108,6 @@ class RedisStore implements StoreInterface
             }
 
             $response->headers->set('X-Content-Digest', $digest);
-            $response->headers->set('Etag', $digest);
 
         }
 
@@ -298,13 +293,11 @@ class RedisStore implements StoreInterface
      */
     private function getMetadataKey(Request $request)
     {
-
         if (isset($this->_keyCache[$request])) {
             return $this->_keyCache[$request];
         }
-
         $this->_keyCache[$request] = $this->_metadataKeyPrefix . '::' . sha1(
-            $request->getRequestUri()
+                $request->getSchemeAndHttpHost().$request->getRequestUri()
             );
 
         return $this->_keyCache[$request];
@@ -334,11 +327,10 @@ class RedisStore implements StoreInterface
         Request $request
         )
     {
-
         return sprintf(
             '%s::%s',
             $this->_digestKeyPrefix,
-            md5($request->getRequestUri())
+            md5($request->getSchemeAndHttpHost().$request->getRequestUri())
             );
 
     }
