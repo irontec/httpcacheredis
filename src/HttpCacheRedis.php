@@ -5,6 +5,7 @@ namespace irontec\HttpCacheRedis;
 use \Symfony\Bundle\FrameworkBundle\HttpCache\HttpCache;
 use \Symfony\Component\HttpFoundation\Request;
 use \Symfony\Component\HttpFoundation\Response;
+use \Symfony\Component\HttpKernel\HttpCache\StoreInterface;
 
 class HttpCacheRedis
     extends HttpCache
@@ -14,7 +15,7 @@ class HttpCacheRedis
      * {@inheritDoc}
      * @see \Symfony\Bundle\FrameworkBundle\HttpCache\HttpCache::createStore()
      */
-    public function createStore()
+    public function createStore(): StoreInterface
     {
 
         return new RedisStore(
@@ -80,7 +81,7 @@ class HttpCacheRedis
     protected function invalidate(
         Request $request,
         $catch = false
-    )
+    ): Response
     {
 
         if ('PURGE' !== $request->getMethod()) {
