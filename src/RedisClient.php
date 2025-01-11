@@ -103,7 +103,8 @@ class RedisClient
             case 'getoption':
             case 'auth':
             case 'select':
-                return false;
+            case 'settimeout':
+                    return false;
         }
 
         $result = call_user_func_array(
