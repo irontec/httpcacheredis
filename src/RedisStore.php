@@ -291,7 +291,7 @@ class RedisStore implements StoreInterface
      *
      * @return string A key for the given Request
      */
-    private function getMetadataKey(Request $request): string
+    private function getMetadataKey(Request $request)
     {
         if (isset($this->_keyCache[$request])) {
             return $this->_keyCache[$request];
@@ -311,7 +311,7 @@ class RedisStore implements StoreInterface
      *
      * @return array An array of HTTP headers
      */
-    private function getRequestHeaders(Request $request): array
+    private function getRequestHeaders(Request $request)
     {
         return $request->headers->all();
     }
@@ -325,7 +325,7 @@ class RedisStore implements StoreInterface
      */
     protected function generateDigestKey(
         Request $request
-        ): string
+        )
     {
         return sprintf(
             '%s::%s',
@@ -363,7 +363,7 @@ class RedisStore implements StoreInterface
      *
      * @return array An array of data associated with the key
      */
-    private function getMetadata($key): array
+    private function getMetadata($key)
     {
 
         $entries = $this->load($key);
@@ -383,7 +383,7 @@ class RedisStore implements StoreInterface
      *
      * @return string The data associated with the key
      */
-    private function load($key): string
+    private function load($key)
     {
 
         $this->_client->createConnection();
@@ -406,7 +406,7 @@ class RedisStore implements StoreInterface
      *
      * @return Boolean true if the two environments match, false otherwise
      */
-    private function requestsMatch($vary, $env1, $env2): bool
+    private function requestsMatch($vary, $env1, $env2)
     {
 
         if (empty($vary)) {
