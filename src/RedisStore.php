@@ -45,7 +45,7 @@ class RedisStore implements StoreInterface
      *
      * @return Response|null A Response instance, or null if no cache entry was found
      */
-    public function lookup(Request $request)
+    public function lookup(Request $request): ?Response
     {
         $key = $this->getMetadataKey($request);
         $entries = $this->getMetadata($key);
@@ -95,7 +95,7 @@ class RedisStore implements StoreInterface
      *
      * @return string The key under which the response is stored
      */
-    public function write(Request $request, Response $response)
+    public function write(Request $request, Response $response): string
     {
 
         $metadataKey = $this->getMetadataKey($request);
@@ -183,7 +183,7 @@ class RedisStore implements StoreInterface
      *
      * @return Boolean|string true if the lock is acquired, the path to the current lock otherwise
      */
-    public function lock(Request $request)
+    public function lock(Request $request): bool
     {
 
         $this->_client->createConnection();
@@ -206,7 +206,7 @@ class RedisStore implements StoreInterface
      *
      * @return Boolean False if the lock file does not exist or cannot be unlocked, true otherwise
      */
-    public function unlock(Request $request)
+    public function unlock(Request $request): bool
     {
 
         $this->_client->createConnection();
@@ -229,7 +229,7 @@ class RedisStore implements StoreInterface
      *
      * @return Boolean true if lock exists, false otherwise
      */
-    public function isLocked(Request $request)
+    public function isLocked(Request $request): bool
     {
 
         $this->_client->createConnection();
@@ -252,7 +252,7 @@ class RedisStore implements StoreInterface
      *
      * @return Boolean true if the URL exists and has been purged, false otherwise
      */
-    public function purge($url)
+    public function purge($url): bool
     {
 
         $request = Request::create($url);
