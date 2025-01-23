@@ -347,7 +347,7 @@ class RedisStore implements StoreInterface
         $this->_client->set($key, $data);
 
         if (is_int($this->_timeOut)) {
-            $this->_client->setTimeout($key, $this->_timeOut);
+            $this->_client->expire($key, $this->_timeOut);
         }
 
         $this->_client->close();
