@@ -103,7 +103,6 @@ class RedisClient
             case 'getoption':
             case 'auth':
             case 'select':
-            case 'settimeout':
                     return false;
         }
 
