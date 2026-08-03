@@ -183,7 +183,7 @@ class RedisStore implements StoreInterface
      *
      * @return Boolean|string true if the lock is acquired, the path to the current lock otherwise
      */
-    public function lock(Request $request): bool
+    public function lock(Request $request): bool|string
     {
 
         $this->_client->createConnection();
@@ -252,7 +252,7 @@ class RedisStore implements StoreInterface
      *
      * @return Boolean true if the URL exists and has been purged, false otherwise
      */
-    public function purge($url): bool
+    public function purge(string $url): bool
     {
 
         $request = Request::create($url);
