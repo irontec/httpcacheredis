@@ -75,12 +75,12 @@ class HttpCacheRedis
 
     /**
      * @param Request $request
-     * @param string $catch
+     * @param bool $catch
      * @return \Symfony\Component\HttpFoundation\Response
      */
     protected function invalidate(
         Request $request,
-        $catch = false
+        bool $catch = false
     ): Response
     {
 

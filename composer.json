@@ -3,12 +3,12 @@
     "description": "HttpCache extension for Symfony 3 with redis",
     "type": "library",
     "require": {
-        "php": ">=5.6",
-        "predis/predis": "v2.0.*"
+        "php": "^8.0",
+        "predis/predis": "^3.0"
     },
     "require-dev": {
-        "symfony/http-foundation": "5.4.*",
-        "symfony/http-kernel": "5.4.*"
+        "symfony/http-foundation": "^5.4 || ^6.4 || ^7.4",
+        "symfony/http-kernel": "^5.4 || ^6.4 || ^7.4"
     },
     "license": "MIT",
     "authors": [
