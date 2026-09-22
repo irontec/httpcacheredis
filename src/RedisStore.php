@@ -145,7 +145,7 @@ class RedisStore implements StoreInterface
      *
      * @param Request $request A Request instance
      */
-    public function invalidate(Request $request)
+    public function invalidate(Request $request): void
     {
 
         $modified = false;
@@ -276,7 +276,7 @@ class RedisStore implements StoreInterface
     /**
      * Cleanups storage.
      */
-    public function cleanup()
+    public function cleanup(): void
     {
 
         $this->_client->createConnection();
